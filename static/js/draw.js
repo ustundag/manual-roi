@@ -1,10 +1,9 @@
 $(document).ready(function(){
-var canvas = $('#canvas')[0];
+var canvas = $('canvas')[0];
 var ctx = canvas.getContext("2d");
 var rect = {};
 var drag = false;
 var imageObj = null;
-var startX=0, startY=0, w=0, h=0;
 
 function init() {
     imageObj = new Image();
@@ -37,14 +36,28 @@ function mouseMove(e) {
     }
 }
 
-function post_coordinates(startX, startY, w, h){
+function print_preds(objects) {
+    // objects = {'0': "37.99%: lynx", '1': "22.35%: Egyptian_cat", '2': "13.46%: tiger_cat", '3': "12.88%: tabby", '4': "5.93%: cougar"};
+    // cnn_model provides the rank-5 predictions
+    $('#object_first').text(objects['0']);
+    // loop over json object to print other 4 predictions
+    let id,p ='';
+    for (let i=1; i<5; i++) {
+        id = '#object_other_'.concat(i.toString());
+        p  = objects[i.toString()];
+        $(id).text(p);
+    }
+}
+
+// TODO error thrown in case rectangle-drawing direction is not across south-east
+function post_coordinates(startX, startY, w, h) {
     var rect = {
-        'startX': 10,
-        'startY': 20,
-        'w': 30,
-        'h': 40
+        'startX': startX,
+        'startY': startY,
+        'w': w,
+        'h': h
     };
-    let csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+    var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
     function csrfSafeMethod(method) {
         // these HTTP methods do not require CSRF protection
         return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
@@ -61,10 +74,14 @@ function post_coordinates(startX, startY, w, h){
         url:"",
         type: "POST",
         headers: [{name: 'X-CSRFToken', value: '{{ csrf_token }}'}],
-        data: {'rect': JSON.stringify(rect)},
+        data: {
+            'img_src': JSON.stringify($('img').attr('src')),
+            'rect': JSON.stringify(rect)
+        },
         dataType: 'json',
-        success:function(data){
+        success:function(objects){
             console.log('success');
+            print_preds(objects)
         },
         error:function (xhr, textStatus, thrownError){
             console.log(thrownError);

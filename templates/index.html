@@ -16,15 +16,21 @@
     <!-- Columns are always 50% wide, on mobile and desktop -->
     <div class="row justify-content-around" style="margin-top:20px">
         <div class="text-white">
-            <canvas id="canvas" class="img-thumbnail" width="600" height="600" style="border:2px solid #666666;"></canvas>
+            <canvas class="img-thumbnail" width="600" height="600" style="border:2px solid #666666;"></canvas>
         </div>
         <div class="col-5 bg-dark text-center text-white" style="height: 610px;">
             {% csrf_token %}
             <div class="d-flex align-items-end flex-column bd-highlight mb-3" style="height: 600px;">
-                <div class="p-2 bd-highlight">
-                    <p class="font-weight-bold" style="margin-top:50px;">Select a region on the image left.</p>
-                    <p style="margin-top:50px;">Object in the selected region may be something like a ...?</p>
-                    <p class="font-weight-bold" id="object_list" style="margin-top:30px;">???</p>
+                <div class="p-2 bd-highlight" id="preds">
+                    <p class="font-weight-bold" style="margin-top:50px;"><-- Select a region on the image left.</p>
+                    <p style="margin-top:50px;">Object in the selected region is likely a ...</p>
+                    <p style="margin-top:50px;" id="object_first">???</p>
+                    <p style="margin-top:50px;">Other weak predictions could be;</p>
+                    <!-- Other weak predictions will be listed here -->
+                    <p id="object_other_1"></p>
+                    <p id="object_other_2"></p>
+                    <p id="object_other_3"></p>
+                    <p id="object_other_4"></p>
                 </div>
                 <button class="mt-auto p-2 btn btn-lg btn-block btn-outline-light">Find out</button>
             </div>
