@@ -129,6 +129,4 @@ dmypy.json
 .pyre/
 
 # Ignore cnn model data
-
-# Ignore cnn model data
-*.h5
+/static/files_cnn/*.h5
