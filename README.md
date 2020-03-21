@@ -1,27 +1,18 @@
 # manual-roi
 
-$ pip list
-Package              Version
--------------------- -------
-absl-py              0.1.11
-asgiref              3.2.5
-Django               3.0.4
-h5py                 2.9.0
-Keras                2.2.4
-Keras-Applications   1.0.8
-Keras-Preprocessing  1.1.0
-numpy                1.14.1
-Pillow               6.0.0
-pip                  20.0.2
-pytz                 2019.3
-scikit-image         0.15.0
-scikit-learn         0.19.1
-scipy                1.0.0
-setuptools           46.0.0
-six                  1.11.0
-sqlparse             0.3.1
-tensorboard          1.6.0
-tensorflow           1.6.0
-tensorflow-estimator 1.13.0
-tensorflow-gpu       1.13.1
-wheel                0.34.2
+A web interface for object recognition purposes by providing manual RoI(region of interests). Region boundaries are manually specified on the image, instead of utilizing RPN(region proposal network) as in Faster-RCNN. Unlike the Faster-RCNN architecture, a one-dimensional RoI pooling layer is inserted just before the classification block canceling the whole RPN block. P.S. The input shape of RoI layer can be enhanced further.
+
+We need two image processing libraries of python, [Pillow](https://pillow.readthedocs.io/en/4.1.x/) and [imageio](http://imageio.readthedocs.io/en/latest/installation.html) to manipulate image frames and compose a new GIF.
+
+## Dependencies
+The ```requirements.txt``` file includes the list of all Python libraries that project requires ```Django```, ```h5py```, ```Keras```, ```numpy```, ```tensorflow``` or ```tensorflow-gpu```.
+
+Simply install them all using the script:
+```python
+pip install -r requirements.txt
+```
+
+## Example
+| Main screen | Selecing RoI |
+| --- | --- |
+| ![glass.gif](https://github.com/ustundag/Progress-bar-for-GIFs/blob/master/glass.gif?raw=true) | ![progressBar_glass.gif](https://github.com/ustundag/Progress-bar-for-GIFs/blob/master/progressBar_glass.gif) |
