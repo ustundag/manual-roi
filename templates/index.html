@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="p-2 mb-2 bg-dark text-white">
-    <h4 class="text-center">Object Recognition with Manual Region Proposals</h4>
+    <h3 class="text-center">Object Recognition with Manual Region Proposals</h3>
 </div>
 <div class="container">
     <!-- Columns are always 50% wide, on mobile and desktop -->
@@ -18,16 +18,16 @@
         <div class="text-white">
             <canvas class="img-thumbnail" width="600" height="600" style="border:2px solid #666666;"></canvas>
         </div>
-        <div class="col-5 bg-dark text-center text-white" style="height: 610px;">
+        <div class="col-5 bg-dark text-white" style="height: 610px;">
             {% csrf_token %}
-            <div class="d-flex align-items-end flex-column bd-highlight mb-3" style="height: 600px;">
+            <div class="d-flex flex-column bd-highlight mb-3 text-center" style="height: 600px;">
                 <div class="p-2 bd-highlight" id="preds">
-                    <p class="font-weight-bold" style="margin-top:50px;"><-- Select a region on the image left.</p>
-                    <p style="margin-top:50px;">Object in the selected region is likely a ...</p>
-                    <p style="margin-top:50px;" id="object_first">???</p>
-                    <p style="margin-top:50px;">Other weak predictions could be;</p>
+                    <h4 class="font-weight-bold" style="margin-top:50px;"><-- Please select a region on the image left.</h4>
+                    <h5 style="margin-top:50px;">Object in the selected region is likely a ...</h5>
+                    <p id="object_first">???</p>
+                    <h5 style="margin-top:50px;">Other weak predictions could be;</h5>
                     <!-- Other weak predictions will be listed here -->
-                    <p id="object_other_1"></p>
+                    <p id="object_other_1">???</p>
                     <p id="object_other_2"></p>
                     <p id="object_other_3"></p>
                     <p id="object_other_4"></p>
@@ -37,6 +37,6 @@
         </div>
     </div>
 </div> <!-- Container ends -->
-<img src="{% static "/media/cat-dog.png" %}" style="display: none;">
+<img src="{% static "/media/image.png" %}" style="display: none;">
 </body>
 </html>

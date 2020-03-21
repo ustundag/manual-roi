@@ -23,7 +23,8 @@ function mouseDown(e) {
 function mouseUp() { drag = false; }
 function mouseMove(e) {
     if (drag) {
-        ctx.clearRect(0, 0, 500, 500);
+        ctx.clearRect(0, 0, 600, 600);
+        ctx.lineWidth = '3';
         ctx.drawImage(imageObj, 0, 0);
         rect.w = (e.pageX - this.offsetLeft) - rect.startX;
         rect.h = (e.pageY - this.offsetTop) - rect.startY;
@@ -49,7 +50,7 @@ function print_preds(objects) {
     }
 }
 
-// TODO error thrown in case rectangle-drawing direction is not across south-east
+// TODO error thrown in case rectangle-drawing direction is not across the south-east
 function post_coordinates(startX, startY, w, h) {
     var rect = {
         'startX': startX,
@@ -90,7 +91,19 @@ function post_coordinates(startX, startY, w, h) {
 }
 
 $('button').click(function(e) {
-    post_coordinates(rect.startX, rect.startY, rect.w, rect.h);
+    console.log('width: ', rect.w, ', height: ', rect.h)
+    console.log((rect.w && rect.h))
+    if (rect.w && rect.h) {
+        console.log('Recognition process has started...')
+        console.log('width: ', rect.w, ', height: ', rect.h)
+        console.log((rect.w && rect.h))
+        post_coordinates(rect.startX, rect.startY, rect.w, rect.h);
+    }
+    else {
+        console.log('Width and height values are NOT convenient!')
+        console.log('width: ', rect.w, ', height: ', rect.h)
+        console.log((rect.w && rect.h))
+    }
 });
 
 init();

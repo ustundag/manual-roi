@@ -15,6 +15,7 @@ def index(request):
     # default empty response
     return HttpResponse(json.dumps({}))
 
+# TODO create a cnn_model object as a singleton
 # neural network model for object prediction
 def recognize(img_src, rect):
     import warnings
@@ -32,7 +33,6 @@ def recognize(img_src, rect):
         cnn_model = load_model(path_cnn_model, custom_objects={'RoiPoolingConv': RoiPoolingConv})
     # create model in case of cnn model absence
     else:
-        # TODO set 'path_cnn_model' as static file path
         import os
         from django.conf import settings
         base_dir = settings.STATICFILES_DIRS[0]
@@ -49,9 +49,11 @@ def recognize(img_src, rect):
     from keras.preprocessing.image import img_to_array, load_img
     from keras.applications.imagenet_utils import decode_predictions
 
-    img_path = finders.find('media/cat-dog.png')
+    # TODO utilize 'img_src' value here
+    img_path = finders.find('media/image.png')
     print(img_path)
     print('***********************')
+    print(img_src)
     img  = load_img(img_path, target_size=(224, 224))
     data = img_to_array(img)
     data = np.expand_dims(data, axis=0)
@@ -59,8 +61,9 @@ def recognize(img_src, rect):
 
     num_rois = 1
     rois = np.zeros((1, num_rois, 4))
-    ratio = 14/224  # input shape of feature maps is 14x14
-    # TODO apply real rect values
+    # scale down the height/width values since canvas has a dimension 600*600
+    # input shape of feature maps is 14x14
+    ratio = 14/600
     startX = np.floor(rect['startX']*ratio)
     startY = np.floor(rect['startY']*ratio)
     w = np.floor(rect['w']*ratio)
