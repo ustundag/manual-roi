@@ -11,6 +11,6 @@ pip install -r requirements.txt
 ```
 
 ## Example
-| Main screen | Selecting RoI |
+| Main screen | Recognition with a single RoI |
 | --- | --- |
 | ![Main](https://raw.githubusercontent.com/ustundag/manual-roi/master/demo_ss/recognition_main.png) | ![Cat Recognition](https://raw.githubusercontent.com/ustundag/manual-roi/master/demo_ss/recognition_cat.png) |
