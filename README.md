@@ -19,7 +19,7 @@ pip install -r requirements.txt
 | --- | --- |
 | ![Main screen](https://raw.githubusercontent.com/ustundag/manual-roi/master/demo_ss/recognition_main.png) | ![Recognition with a single RoI](https://raw.githubusercontent.com/ustundag/manual-roi/master/demo_ss/recognition_cat.png) |
 
-## Future Work & TODOs
+## Future Works & TODOs
 ### Back-end
 - [ ] Create a cnn_model object as a singleton
 - [ ] Add a presence check also for the weights file
